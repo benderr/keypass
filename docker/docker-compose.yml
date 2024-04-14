@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:12
+    command: postgres -c max_prepared_transactions=100
+    volumes:
+      - postgres-app-data:/var/lib/postgresql/data
+      - ./compose-init.sql:/docker-entrypoint-initdb.d/compose-init.sql
+    environment:
+      POSTGRES_PASSWORD: 1
+    ports:
+      - 5432:5432
+    
+  app:
+    build:
+      context: ../ # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    depends_on: 
+      - postgres # This service depends on redis. Start that first.
+    environment: # Pass environment variables to the service
+      RUN_ADDRESS: 0.0.0.0:8080
+      DATABASE_URI: postgres://postgres:1@postgres:5432/gopherdb?sslmode=disable
+      PRIVATE_KEY: "./certs/localhost.key"
+      PUBLIC_KEY: "./certs/localhost.crt"
+      KEY: "123"
+      RECORD_KEY: "123"
+      
+volumes:
+  postgres-app-data:
