@@ -11,7 +11,6 @@ type RowButton struct {
 	btnDelete *tview.Button
 	*tview.Flex
 	label string
-	//*tview.Frame
 }
 
 func NewItem(label string, labelShow, labelEdit, labelDelete string) *RowButton {
@@ -76,9 +75,6 @@ func (r *RowButton) SetFinishedFunc(handler func(key tcell.Key)) tview.FormItem 
 }
 
 func (r *RowButton) SetFormAttributes(labelWidth int, labelColor, bgColor, fieldTextColor, fieldBgColor tcell.Color) tview.FormItem {
-	// r.btnShow.SetLabelColor(labelColor)
-	// r.btnShow.SetBackgroundColor(bgColor)
 	r.SetBackgroundColor(bgColor)
-
 	return r
 }

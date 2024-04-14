@@ -17,15 +17,3 @@ var (
 	ErrNotFound   = errors.New("user not found")
 	ErrLoginExist = errors.New("login already exist")
 )
-
-//Валидация
-
-// type UserUsecase interface {
-// 	Register(ctx context.Context, login string, password string) error
-// 	GetByLogin(ctx context.Context, login string, password string) (User, error)
-// }
-
-// type UserRepository interface {
-// 	Get(ctx context.Context, login string, password string) (User, error)
-// 	Insert(ctx context.Context, u *User) error
-// }

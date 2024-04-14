@@ -22,10 +22,4 @@ func New(text string, onSubmit func(a PinForm) bool) *tview.Form {
 	})
 
 	return form
-	// grid := tview.NewGrid().
-	// 	SetColumns(0, 40, 0).
-	// 	SetRows(0, 40, 0).
-	// 	AddItem(form, 1, 1, 1, 1, 0, 0, true)
-
-	// return grid
 }
